@@ -2,7 +2,7 @@
 
 A machine learning web app that predicts calories burned during a workout and identifies a user's training persona, built on real gym member data and deployed live with Streamlit.
 
-**[🔗 Live Demo](#)** *(add your Streamlit Cloud link here once confirmed live)*
+**[🔗 Live Demo](#)** *(https://smart-fitness-coach-daumflscpmdpeepbjehmva.streamlit.app/)*
 
 ---
 
