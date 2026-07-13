@@ -19,19 +19,19 @@ model_choice = st.radio(
     ["Quick (Session Duration + Workout Frequency only)", "Detailed (Duration + Workout Frequency + Experience + Fat%)"]
 )
 
-if model_choice == "Quick (Session Duration only)":
+if model_choice == "Quick (Session Duration + Workout Frequency only)":
     st.caption("ℹ️ We'll assume Experience Level = 2 and Fat Percentage = 26.2% (dataset averages) for your persona detection. For a more accurate, personalized result based on your real stats, switch to **Detailed** mode.")
 
 duration = st.slider("Session Duration (hours)", min_value=0.25, max_value=2.5, value=1.0, step=0.05)
 workout_frequency = st.slider("Workout Frequency (days/week)", min_value=1, max_value=7, value=3)
 
-if model_choice == "Detailed (Duration + Experience + Fat%)":
+if model_choice == "Detailed (Duration + Workout Frequency + Experience + Fat%)":
     experience = st.selectbox("Experience Level", [1, 2, 3])
     fat_percentage = st.slider("Fat Percentage (%)", min_value=5.0, max_value=45.0, value=20.0, step=0.5)
 
 if st.button("Predict"):
     # --- Calorie prediction ---
-    if model_choice == "Quick (Session Duration only)":
+    if model_choice == "Quick (Session Duration + Workout Frequency only)":
         input_data = np.array([[duration]])
         prediction = model_simple.predict(input_data)[0]
         experience_for_cluster = 2
