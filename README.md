@@ -2,7 +2,7 @@
 
 A machine learning web app that predicts calories burned during a workout and identifies a user's training persona, built on real gym member data and deployed live with Streamlit.
 
-**[🔗 Live Demo](#)** _(add your Streamlit Cloud link here after deploying)_
+**[🔗 Live Demo](#)** *(add your Streamlit Cloud link here once confirmed live)*
 
 ---
 
@@ -28,7 +28,7 @@ Gym members often don't know how their workout habits compare to others, or what
    - Simple model (Session Duration only)
    - Multi-feature model (Session Duration + Experience Level + Fat Percentage)
 4. **Clustering** — used K-Means (with the Elbow Method to select K=4) to segment gym members into four distinct training personas based on behavioral features.
-5. **Deployment** — built an interactive Streamlit app that loads the trained models and lets users get real-time predictions and persona classification.
+5. **Deployment** — built an interactive Streamlit app that loads the trained models and lets users get real-time predictions and persona classification, with a Quick/Detailed mode toggle.
 
 ---
 
@@ -41,12 +41,19 @@ Gym members often don't know how their workout habits compare to others, or what
 
 ### The Four Training Personas
 
-| Persona                         | Duration (hrs) | Calories | Frequency (days/wk) | Experience | Fat % |
-| ------------------------------- | -------------- | -------- | ------------------- | ---------- | ----- |
-| Elite Trainer                   | 1.76           | 1265     | 4.5                 | 3          | 14.8% |
-| Occasional Intense Trainer      | 1.26           | 919      | 2.5                 | 1          | 27.8% |
-| Consistent Intermediate Trainer | 1.25           | 902      | 3.5                 | 2          | 27.3% |
-| Beginner / Light Trainer        | 0.77           | 542      | 2.5                 | 1          | 27.5% |
+| Persona | Duration (hrs) | Calories | Frequency (days/wk) | Experience | Fat % |
+|---|---|---|---|---|---|
+| Elite Trainer | 1.76 | 1265 | 4.5 | 3 | 14.8% |
+| Occasional Intense Trainer | 1.26 | 919 | 2.5 | 1 | 27.8% |
+| Consistent Intermediate Trainer | 1.25 | 902 | 3.5 | 2 | 27.3% |
+| Beginner / Light Trainer | 0.77 | 542 | 2.5 | 1 | 27.5% |
+
+---
+
+## App Design Notes
+
+- Users choose between **Quick** mode (Session Duration only) and **Detailed** mode (adds Experience Level + Fat Percentage) for the calorie estimate.
+- Persona detection always requires all 5 clustering features. In Quick mode, Experience Level and Fat Percentage default to dataset averages (2 and 26.2% respectively), and the app clearly tells the user this upfront so they know the persona result is an estimate unless they switch to Detailed mode.
 
 ---
 
@@ -82,14 +89,15 @@ streamlit run app.py
 ```
 smart-fitness-coach/
 │
-├── app.py                       # Streamlit app
-├── calorie_model.pkl            # Simple regression model
-├── calories_model_multi.pkl     # Multi-feature regression model
-├── scaler.pkl                   # StandardScaler for clustering input
-├── kmeans_model.pkl             # Trained K-Means model
-├── cluster_names.pkl            # Cluster number → persona name mapping
-├── requirements.txt             # Python dependencies
-├── notebook.ipynb               # Full EDA, modeling, and clustering workflow
+├── app.py                              # Streamlit app
+├── analysis.py                         # Full EDA, modeling, and clustering workflow
+├── calorie_model.pkl                   # Simple regression model
+├── calories_model_multi.pkl            # Multi-feature regression model
+├── scaler.pkl                          # StandardScaler for clustering input
+├── kmeans_model.pkl                    # Trained K-Means model
+├── cluster_names.pkl                   # Cluster number → persona name mapping
+├── gym_members_exercise_tracking.csv   # Dataset
+├── requirements.txt                    # Python dependencies
 └── README.md
 ```
 
