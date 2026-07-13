@@ -16,7 +16,7 @@ st.header("Predict Your Calories Burned")
 
 model_choice = st.radio(
     "Choose prediction mode:",
-    ["Quick (Session Duration only)", "Detailed (Duration + Experience + Fat%)"]
+    ["Quick (Session Duration + Workout Frequency only)", "Detailed (Duration + Workout Frequency + Experience + Fat%)"]
 )
 
 if model_choice == "Quick (Session Duration only)":
