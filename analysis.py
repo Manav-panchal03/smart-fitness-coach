@@ -77,7 +77,7 @@ y_pred = model.predict(X_test)
 r2 = r2_score(y_test , y_pred)
 print("R^2 Score :" , r2)
 
-plt.scatter(X_test , y_pred , alpha=0.5 , label='Actual Data')
+plt.scatter(X_test , y_test , alpha=0.5 , label='Actual Data')
 plt.plot(X_test , y_pred , color='red' , linewidth=2 , label='Model prediction (line)')
 plt.title('Session Duration vs Calories Burned — with Regression Line')
 plt.xlabel('Session Duration (hours)')
